@@ -6,7 +6,7 @@ server:
 ingester:
   wal:
     enabled: true
-    dir: /var/loki/wal  # matches docker volume
+    dir: /tmp/loki/wal  # writable temp storage
   lifecycler:
     address: 127.0.0.1
     ring:
@@ -27,11 +27,11 @@ schema_config:
 
 storage_config:
   boltdb_shipper:
-    active_index_directory: /var/loki/index
-    cache_location: /var/loki/cache
+    active_index_directory: /tmp/loki/index
+    cache_location: /tmp/loki/cache
     shared_store: filesystem
   filesystem:
-    directory: /var/loki/chunks
+    directory: /tmp/loki/chunks
 
 limits_config:
   enforce_metric_name: false
